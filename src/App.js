@@ -13,6 +13,7 @@ export const ACTIONS = {
 function render(state,{type,payload}){
   switch(type) {
    case ACTIONS.ADD_DIGIT:
+    
     if(state.overwrite){
       return {
         ...state,
@@ -26,6 +27,7 @@ function render(state,{type,payload}){
     if(payload.digit === "." && state.currentOperand.includes(".")) {
       return state 
     }
+    
     // if(payload.digit == ".")
     // {
     //   window.location.reload()
@@ -85,7 +87,7 @@ function render(state,{type,payload}){
         {
           return state
         }
-        if(state.currentOperand.length==1)
+        if(state.currentOperand.length===1)
         {
           return{
             ...state,
@@ -113,6 +115,8 @@ function render(state,{type,payload}){
             currentOperand:evaluate(state)
           }
       }
+      default :
+        return state
   }
 }
 function evaluate({currentOperand,previousoperand,operation}){
@@ -133,6 +137,8 @@ function evaluate({currentOperand,previousoperand,operation}){
   case "/":
     computation=prev /curr
     break
+    default:
+      computation=""
  }
  return computation.toString()
 }
